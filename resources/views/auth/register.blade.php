@@ -19,8 +19,20 @@
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
 
-                                    <!-- Name -->
+                                    <!-- Role -->
                                     <div>
+                                        <label class="form-label">Role</label>
+                                        <select id="role" class="form-control" name="role" required>
+                                            <option value="">--Select Role--</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-acc-input-error for="role" />
+                                    </div>
+
+                                    <!-- Name -->
+                                    <div class="mt-4">
                                         <label class="form-label">Name</label>
                                         <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
                                         <x-acc-input-error for="name" />

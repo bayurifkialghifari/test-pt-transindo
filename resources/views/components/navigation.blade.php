@@ -26,6 +26,12 @@
                         <span class="align-middle">Login</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('register') }}" wire:navigate>
+                        <i class="fa fa-sign-in"></i>
+                        <span class="align-middle">Register</span>
+                    </a>
+                </li>
             @endguest
             @auth
                 @foreach($menus as $menu)
