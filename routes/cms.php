@@ -10,6 +10,9 @@ Route::group([
 
     Route::get('/', App\Livewire\Dashboard::class)->name('dashboard');
 
+    // Product type
+    Route::get('/product-type', App\Livewire\Cms\Product\Type::class)->name('product.type');
+
     // Merchant
     Route::get('/merchant/profile', App\Livewire\Cms\Merchant\Profile::class)->name('merchant.profile');
 

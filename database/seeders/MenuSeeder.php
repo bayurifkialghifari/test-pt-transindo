@@ -21,6 +21,15 @@ class MenuSeeder extends Seeder
             'ordering' => '1',
         ]);
 
+        Menu::create([
+            'name' => 'Product Type',
+            'on' => 'cms',
+            'type' => 'item',
+            'icon' => 'fa fa-shopping-bag',
+            'route' => 'cms.product.type',
+            'ordering' => '2',
+        ]);
+
         // Merchant
         $merchant = Menu::create([
             'name' => 'Merchant',
@@ -28,7 +37,7 @@ class MenuSeeder extends Seeder
             'type' => 'item',
             'icon' => 'fa fa-user',
             'route' => '#',
-            'ordering' => '2',
+            'ordering' => '3',
         ]);
         $merchant->menuChildren()->create([
             'name' => 'Profile',

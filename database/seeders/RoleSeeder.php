@@ -31,6 +31,8 @@ class RoleSeeder extends Seeder
         'password.confirm',
         'password.update',
         'logout',
+        'cms.merchant.profile',
+        'cms.merchant.menu',
     ];
     public $routeMerchant = [
         'cms.dashboard',
