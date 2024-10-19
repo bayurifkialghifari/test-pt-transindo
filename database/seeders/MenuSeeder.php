@@ -22,7 +22,7 @@ class MenuSeeder extends Seeder
         ]);
 
         Menu::create([
-            'name' => 'Product Type',
+            'name' => 'Menu Types',
             'on' => 'cms',
             'type' => 'item',
             'icon' => 'fa fa-shopping-bag',

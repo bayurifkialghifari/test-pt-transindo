@@ -9,7 +9,7 @@ use BaseComponent;
 class Type extends BaseComponent
 {
     public FormType $form;
-    public $title = 'Product Type';
+    public $title = 'Menu Type';
 
     public $searchBy = [
             [
