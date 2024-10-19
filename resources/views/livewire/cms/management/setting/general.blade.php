@@ -51,36 +51,6 @@
                                 <x-acc-input type="textarea" model="form.address" placeholder="Address" />
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label">About Us</label>
-                                <x-acc-input type="textarea" model="form.about" placeholder="About Us" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Vision</label>
-                                <x-acc-input type="textarea" :live="true" model="form.vision" placeholder="Vision" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Preview Vision</label>
-                                <x-markdown>{{ $form->vision }}</x-markdown>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Mission</label>
-                                <x-acc-input type="textarea" :live="true" model="form.mission" placeholder="Mission" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">Preview Mission</label>
-                                <x-markdown>{{ $form->mission }}</x-markdown>
-                            </div>
-                        </div>
                     </x-acc-form>
                 </div>
             </div>
