@@ -51,6 +51,12 @@ class MenuSeeder extends Seeder
             'route' => 'cms.merchant.product',
             'ordering' => '2',
         ]);
+        $merchant->menuChildren()->create([
+            'name' => 'Order',
+            'icon' => '#',
+            'route' => 'cms.merchant.order',
+            'ordering' => '3',
+        ]);
 
         // Website Setting
         $admin = Menu::create([

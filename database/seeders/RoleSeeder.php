@@ -32,7 +32,8 @@ class RoleSeeder extends Seeder
         'password.update',
         'logout',
         'cms.merchant.profile',
-        'cms.merchant.menu',
+        'cms.merchant.product',
+        'cms.merchant.order',
     ];
     public $routeMerchant = [
         'cms.dashboard',
@@ -41,6 +42,7 @@ class RoleSeeder extends Seeder
         'profile.destroy',
         'cms.merchant.profile',
         'cms.merchant.product',
+        'cms.merchant.order',
     ];
 
     public function run(): void
