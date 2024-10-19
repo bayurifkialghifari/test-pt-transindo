@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             SettingSeeder::class,
             MenuTypesSeeder::class,
+            MerchantMenuSeeder::class,
         ]);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

@@ -1,21 +1,14 @@
 <?php
 
-namespace App\Livewire\Cms\Merchant;
+namespace App\Livewire;
 
-use App\Livewire\Forms\Cms\Merchant\FormProduct;
-use Livewire\Attributes\Validate;
-use Livewire\WithFileUploads;
+use App\Models\Product;
 use App\Models\ProductType;
-use App\Models\Product as ProductModel;
 use BaseComponent;
 
-class Product extends BaseComponent
+class Home extends BaseComponent
 {
-    use WithFileUploads;
-
-    public FormProduct $form;
-    public $title = 'Merchant Menus';
-
+    public $title = 'Marketplace';
     public $searchBy = [
             [
                 'name' => 'Type',
@@ -47,24 +40,27 @@ class Product extends BaseComponent
             ],
         ],
         $search = '',
-        $isUpdate = false,
-        $paginate = 10,
+        $paginate = 8,
         $orderBy = 'title',
         $order = 'asc';
 
-    public $types = [];
-
-    #[Validate('nullable|image:jpeg,png,jpg,svg|max:2048')]
-    public $image;
+    public $productType = 'all';
+    public $productTypes = [];
 
     public function mount() {
-        $this->types = ProductType::all();
+        $this->productTypes = ProductType::all();
     }
 
     public function render()
     {
+        $model = Product::with('productType', 'media.model');
+
+        if ($this->productType != 'all') {
+            $model = $model->where('product_type_id', $this->productType);
+        }
+
         $get = $this->getDataWithFilter(
-            model: ProductModel::with('productType', 'media.model'),
+            model: $model,
             searchBy: $this->searchBy,
             orderBy: $this->orderBy,
             order: $this->order,
@@ -76,14 +72,6 @@ class Product extends BaseComponent
             $this->resetPage();
         }
 
-        return view('livewire.cms.merchant.product', compact('get'))->title($this->title);
-    }
-
-    public function customSave() {
-        $this->form->image = $this->image;
-
-        $this->save();
-
-        $this->image = null;
+        return view('livewire.home', compact('get'))->title($this->title);
     }
 }
