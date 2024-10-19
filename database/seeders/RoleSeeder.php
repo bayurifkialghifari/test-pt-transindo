@@ -32,14 +32,19 @@ class RoleSeeder extends Seeder
         'password.update',
         'logout',
     ];
-    public $routeUser = [
+    public $routeMerchant = [
         'cms.dashboard',
+        'profile.edit',
+        'profile.update',
+        'profile.destroy',
+        'cms.merchant.profile',
+        'cms.merchant.menu',
     ];
 
     public function run(): void
     {
         $admin = Role::findOrCreate('admin', 'web');
-        $user = Role::findOrCreate('default', 'web');
+        $merchant = Role::findOrCreate('merchant', 'web');
 
         // Generate Permission
         // Get all route names
@@ -57,8 +62,8 @@ class RoleSeeder extends Seeder
                     $admin->givePermissionTo($permission);
 
                     // Give pegawai permission
-                    if(in_array($route, $this->routeUser)) {
-                        $user->givePermissionTo($permission);
+                    if(in_array($route, $this->routeMerchant)) {
+                        $merchant->givePermissionTo($permission);
                     }
                 }
             }

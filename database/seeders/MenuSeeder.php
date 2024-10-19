@@ -21,6 +21,28 @@ class MenuSeeder extends Seeder
             'ordering' => '1',
         ]);
 
+        // Merchant
+        $merchant = Menu::create([
+            'name' => 'Merchant',
+            'on' => 'cms',
+            'type' => 'item',
+            'icon' => 'fa fa-user',
+            'route' => '#',
+            'ordering' => '2',
+        ]);
+        $merchant->menuChildren()->create([
+            'name' => 'Profile',
+            'icon' => '#',
+            'route' => 'cms.merchant.profile',
+            'ordering' => '1',
+        ]);
+        $merchant->menuChildren()->create([
+            'name' => 'Menu',
+            'icon' => '#',
+            'route' => 'cms.merchant.menu',
+            'ordering' => '2',
+        ]);
+
         // Website Setting
         $admin = Menu::create([
             'name' => 'Management',

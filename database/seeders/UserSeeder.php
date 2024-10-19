@@ -21,5 +21,13 @@ class UserSeeder extends Seeder
         ]);
 
         $user->assignRole('admin');
+
+        $merchant = User::create([
+            'name' => 'Merchant',
+            'email' => 'merchant@merchant.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $merchant->assignRole('merchant');
     }
 }
