@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\Active;
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -23,7 +23,7 @@ class Checkout extends Model implements HasMedia
 
     protected function casts(): array {
         return [
-            'status' => Active::class,
+            'status' => Status::class,
         ];
     }
 
@@ -33,5 +33,9 @@ class Checkout extends Model implements HasMedia
 
     public function merchant() {
         return $this->belongsTo(User::class, 'merchant_id');
+    }
+
+    public function cart() {
+        return $this->belongsTo(Cart::class);
     }
 }

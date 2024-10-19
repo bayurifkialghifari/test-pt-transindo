@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="card-body text-center">
                         <div class="alert alert-{{ $old_data?->status == '1' ? 'success' : 'warning' }}" role="alert">
-                            Payment {{ $old_data?->status == '1' ? 'Success' : 'Pending' }}.
+                            Payment {{ $old_data?->status->label() }}.
                         </div>
                         <img src="{{
                             $get?->merchant?->merchant?->getFirstMediaUrl('images') != ''
