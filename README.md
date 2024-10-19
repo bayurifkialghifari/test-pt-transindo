@@ -1,4 +1,27 @@
-# Waduh
+# Login
+
+## Admin
+
+```
+admin@admin.com
+password
+```
+
+## Customer
+
+```
+customer@customer.com
+password
+```
+
+## Merchant
+
+```
+merchant@merchant.com
+password
+```
+
+# Installation
 
 ```
 git clone
