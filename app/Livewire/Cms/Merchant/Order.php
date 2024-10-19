@@ -26,6 +26,10 @@ class Order extends BaseComponent
                 'field' => 'status',
             ],
             [
+                'name' => 'Delivery Date',
+                'field' => 'delivery_date',
+            ],
+            [
                 'name' => 'Status Delivery',
                 'field' => 'status_delivery',
             ],
@@ -38,7 +42,7 @@ class Order extends BaseComponent
         $isUpdate = false,
         $paginate = 10,
         $orderBy = 'created_at',
-        $order = 'asc';
+        $order = 'desc';
 
     public function render()
     {

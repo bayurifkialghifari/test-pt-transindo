@@ -19,11 +19,13 @@ class Checkout extends Model implements HasMedia
         'total',
         'status',
         'status_delivery',
+        'delivery_date',
     ];
 
     protected function casts(): array {
         return [
             'status' => Status::class,
+            'delivery_date' => 'date',
         ];
     }
 

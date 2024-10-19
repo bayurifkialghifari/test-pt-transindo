@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Enums\Active;
 use App\Enums\Alert;
+use App\Enums\Status;
 use App\Models\Cart;
 use App\Models\Checkout as ModelsCheckout;
 use App\Traits\WithMediaCollection;
@@ -26,6 +27,9 @@ class Checkout extends BaseComponent
     #[Validate('required|image:jpeg,png,jpg,svg|max:2048')]
     public $image;
 
+    #[Validate('required|date_format:Y-m-d')]
+    public $delivery_date;
+
     public function mount($id) {
         if(!auth()->user()) {
             return $this->redirectRoute('login');
@@ -38,6 +42,7 @@ class Checkout extends BaseComponent
             ->with('merchant', 'details')
             ->withSum('details', 'quantity')
             ->first();
+        $this->delivery_date = $this->old_data?->delivery_date->format('Y-m-d');
 
         // Total
         foreach ($this->get->details as $detail) {
@@ -59,7 +64,8 @@ class Checkout extends BaseComponent
                 'merchant_id' => $this->get->merchant_id,
                 'cart_id' => $this->id,
                 'total' => $this->total,
-                'status' => Active::Inactive,
+                'status' => Status::Pending,
+                'delivery_date' => $this->delivery_date,
             ]);
             Cart::find($this->id)->update([
                 'active' => Active::Inactive,

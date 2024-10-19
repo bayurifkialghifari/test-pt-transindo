@@ -28,6 +28,7 @@
                                         {{ $d->status->label() }}
                                     </span>
                                 </td>
+                                <td>{{ $d->delivery_date?->format('Y-m-d') }}</td>
                                 <td>{{ $d->status_delivery }}</td>
                                 <td>{{ $d->created_at->format('Y-m-d H:i') }}</td>
                                 <td>
@@ -102,6 +103,12 @@
                             @endif
                         </tbody>
                     </table>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Delivery Date</label>
+                    <p>
+                        <b>{{ $detail?->delivery_date?->format('Y-m-d') }}</b>
+                    </p>
                 </div>
             </div>
             <div class="col-md-12">

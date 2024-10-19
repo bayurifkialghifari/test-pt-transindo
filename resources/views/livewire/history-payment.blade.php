@@ -39,8 +39,9 @@
                                     </span>
                                 </td>
                                 <td>{{ $d->status_delivery }}</td>
+                                <td>{{ $d->created_at }}</td>
                                 <td>
-                                    <a href="{{ route('checkout', $d->cart_id) }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route('checkout', $d->cart_id) }}" class="btn btn-primary btn-sm" wire:navigate>
                                         <i class="fa fa-eye"></i> Detail
                                     </a>
                                 </td>

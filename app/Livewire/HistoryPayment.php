@@ -19,6 +19,7 @@ class HistoryPayment extends BaseComponent
     {
         $get = Checkout::where('user_id', auth()->user()?->id)
             ->with('merchant')
+            ->latest()
             ->get();
 
         return view('livewire.history-payment', compact('get'))->title($this->title);

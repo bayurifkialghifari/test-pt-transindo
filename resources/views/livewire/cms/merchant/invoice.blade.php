@@ -47,7 +47,13 @@
                         <h4>Total : {{ number_format($total, 0, ',', '.')  }}</h4>
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="h3 mb-3 mt-3">
+                                <h4 class="mb-3">
+                                    Delivery Date : {{ $data?->delivery_date?->format('Y-m-d') }}
+                                </h4>
+                                <h4 class="mb-3">
+                                    Delivery Status : {{ $data?->status_delivery }}
+                                </h4>
+                                <h1 class="mb-3 mt-3">
                                     Receipt
                                 </h1>
                                 <x-acc-image-preview :image="null"

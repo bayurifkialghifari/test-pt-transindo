@@ -6,7 +6,12 @@
                 <div class="card-header">
                     <div class="card-body text-center">
                         <div class="alert alert-{{ $old_data?->status->value == '1' ? 'success' : 'warning' }}" role="alert">
-                            Payment {{ $old_data?->status->label() }}.
+                            Payment {{ $old_data?->status->label() ?? 'Pending' }}.
+                            <h4 class="mb-3">
+                                @if($old_data?->status->value == '1')
+                                    Delivery Status : {{ $old_data?->status_delivery }}
+                                @endif
+                            </h4>
                         </div>
                         <img src="{{
                             $get?->merchant?->merchant?->getFirstMediaUrl('images') != ''
@@ -70,8 +75,11 @@
                                         : asset('blank.svg')
                                     "
                                 />
-                                @if($old_data?->status->value == '0')
+                                <label class="form-label">Delivery Date</label>
+                                <x-acc-input type="date" model="delivery_date" />
+                                @if($old_data?->status->value == '0' || !$old_data)
                                     <x-acc-input type="file" model="image" />
+
                                     <button wire:click="customSave" class="btn btn-primary mt-2">
                                         <i class="fa fa-dollar"></i>
                                         Submit
