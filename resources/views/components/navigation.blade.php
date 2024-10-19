@@ -5,6 +5,12 @@
         </a>
 
         <ul class="sidebar-nav">
+            <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('home') }}" wire:navigate>
+                <i class="fa fa-home"></i>
+                    <span class="align-middle">Home</span>
+                </a>
+            </li>
             @auth
                 @foreach($menus as $menu)
                     @php

@@ -2,71 +2,33 @@
 
 namespace App\Livewire;
 
-use App\Models\Product;
-use App\Models\ProductType;
+use App\Models\User;
+use Livewire\Attributes\Url;
 use BaseComponent;
 
 class Home extends BaseComponent
 {
     public $title = 'Marketplace';
-    public $searchBy = [
-            [
-                'name' => 'Type',
-                'field' => 'productType.name',
-            ],
-            [
-                'name' => 'Photo',
-                'field' => 'media.model.file_name',
-            ],
-            [
-                'name' => 'Name',
-                'field' => 'title',
-            ],
-            [
-                'name' => 'Slug',
-                'field' => 'slug',
-            ],
-            [
-                'name' => 'Description',
-                'field' => 'description',
-            ],
-            [
-                'name' => 'Price',
-                'field' => 'price',
-            ],
-            [
-                'name' => 'Status',
-                'field' => 'active',
-            ],
-        ],
-        $search = '',
-        $paginate = 8,
-        $orderBy = 'title',
-        $order = 'asc';
 
-    public $productType = 'all';
-    public $productTypes = [];
-
-    public function mount() {
-        $this->productTypes = ProductType::all();
-    }
+    #[Url()]
+    public $search = '';
 
     public function render()
     {
-        $model = Product::with('productType', 'media.model');
-
-        if ($this->productType != 'all') {
-            $model = $model->where('product_type_id', $this->productType);
-        }
-
-        $get = $this->getDataWithFilter(
-            model: $model,
-            searchBy: $this->searchBy,
-            orderBy: $this->orderBy,
-            order: $this->order,
-            paginate: $this->paginate,
-            s: $this->search
-        );
+        $get = User::with('merchant', 'merchant.media.model')
+            ->whereHas('roles', function ($query) { $query->where('name', 'Merchant'); })
+            ->where(function ($query) {
+                $query->when($this->search != null, function ($query) {
+                    $query->orWhere('name', 'like', '%' . $this->search . '%');
+                    $query->orWhere('email', 'like', '%' . $this->search . '%');
+                    $query->orWhereHas('merchant', fn ($query) => $query->where('name', 'like', '%' . $this->search . '%'));
+                    $query->orWhereHas('merchant', fn ($query) => $query->where('email', 'like', '%' . $this->search . '%'));
+                    $query->orWhereHas('merchant', fn ($query) => $query->where('phone', 'like', '%' . $this->search . '%'));
+                    $query->orWhereHas('merchant', fn ($query) => $query->where('address', 'like', '%' . $this->search . '%'));
+                    $query->orWhereHas('merchant', fn ($query) => $query->where('description', 'like', '%' . $this->search . '%'));
+                    $query->orWhereHas('products', fn ($query) => $query->where('title', 'like', '%' . $this->search . '%'));
+                });
+            })->paginate(8);
 
         if ($this->search != null) {
             $this->resetPage();

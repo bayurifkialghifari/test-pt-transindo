@@ -37,4 +37,12 @@ class User extends Authenticatable
     {
         return LogOptions::defaults()->logOnly(['name', 'email']);
     }
+
+    public function merchant() {
+        return $this->hasOne(Merchant::class);
+    }
+
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }

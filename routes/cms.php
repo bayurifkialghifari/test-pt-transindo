@@ -8,7 +8,7 @@ Route::group([
     'middleware' => ['auth', 'validate-role-permission'],
 ], function () {
 
-    Route::get('/', App\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/', App\Livewire\Cms\Dashboard::class)->name('dashboard');
 
     // Product type
     Route::get('/product-type', App\Livewire\Cms\Product\Type::class)->name('product.type');
