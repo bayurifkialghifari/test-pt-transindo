@@ -29,5 +29,13 @@ class UserSeeder extends Seeder
         ]);
 
         $merchant->assignRole('merchant');
+
+        $customer = User::create([
+            'name' => 'Customer',
+            'email' => 'customer@customer.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $customer->assignRole('customer');
     }
 }

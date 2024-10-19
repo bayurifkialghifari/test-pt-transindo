@@ -6,14 +6,16 @@
 
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav navbar-align">
-                <livewire:components.cart-icon>
-                <li class="nav-item dropdown">
-                    <a class="nav-icon" href="{{ route('history') }}" wire:navigate>
-                        <div class="position-relative">
-                            <i class="fa fa-history"></i>
-                        </div>
-                    </a>
-                </li>
+                @if(auth()->user()?->hasRole('customer') || !auth()->user())
+                    <livewire:components.cart-icon>
+                    <li class="nav-item dropdown">
+                        <a class="nav-icon" href="{{ route('history') }}" wire:navigate>
+                            <div class="position-relative">
+                                <i class="fa fa-history"></i>
+                            </div>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                         <i class="fa fa-cog"></i>

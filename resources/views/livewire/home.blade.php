@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-header">
-                        <h5 class="card-title">Search Merchant</h5>
+                        <h5 class="card-title">Search Merchant Or Menu</h5>
                     </div>
                     <div class="container">
                         <div class="mb-3">

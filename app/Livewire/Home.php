@@ -13,6 +13,12 @@ class Home extends BaseComponent
     #[Url()]
     public $search = '';
 
+    public function mount() {
+        if(auth()->user()?->hasRole(['admin', 'merchant'])) {
+            $this->redirectRoute('cms.dashboard');
+        }
+    }
+
     public function render()
     {
         $get = User::with('merchant', 'merchant.media.model')

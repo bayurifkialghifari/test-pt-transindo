@@ -5,12 +5,28 @@
         </a>
 
         <ul class="sidebar-nav">
-            <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('home') }}" wire:navigate>
-                <i class="fa fa-home"></i>
-                    <span class="align-middle">Home</span>
-                </a>
-            </li>
+            @if(auth()->user()?->hasRole('customer'))
+                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('home') }}" wire:navigate>
+                    <i class="fa fa-home"></i>
+                        <span class="align-middle">Home</span>
+                    </a>
+                </li>
+            @endif
+            @guest
+                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('home') }}" wire:navigate>
+                    <i class="fa fa-home"></i>
+                        <span class="align-middle">Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('login') }}" wire:navigate>
+                        <i class="fa fa-sign-in"></i>
+                        <span class="align-middle">Login</span>
+                    </a>
+                </li>
+            @endguest
             @auth
                 @foreach($menus as $menu)
                     @php

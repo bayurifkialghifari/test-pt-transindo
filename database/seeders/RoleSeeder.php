@@ -52,6 +52,7 @@ class RoleSeeder extends Seeder
     {
         $admin = Role::findOrCreate('admin', 'web');
         $merchant = Role::findOrCreate('merchant', 'web');
+        $customer = Role::findOrCreate('customer', 'web');
 
         // Generate Permission
         // Get all route names
