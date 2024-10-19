@@ -35,6 +35,10 @@
                                         <i class="fa fa-eye"></i>
                                         Verify
                                     </button>
+                                    <a href="{{ route('cms.merchant.invoice', $d->id) }}" class="btn btn-success btn-sm">
+                                        <i class="fa fa-eye"></i>
+                                        Invoice
+                                    </a>
                                 </td>
                             </tr>
                         @empty

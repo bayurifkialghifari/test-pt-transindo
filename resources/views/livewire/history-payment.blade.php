@@ -32,7 +32,7 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td>{{ $d->merchant->name }}</td>
-                                <td>{{ $d->total }}</td>
+                                <td>{{ number_format($d->total, 0, ',', '.') }}</td>
                                 <td>
                                     <span class="{{ $d->status->class() }}">
                                         {{ $d->status->label() }}
@@ -40,7 +40,7 @@
                                 </td>
                                 <td>{{ $d->status_delivery }}</td>
                                 <td>
-                                    <a href="{{ route('checkout', $d->cart_id) }}" class="btn btn-primary">
+                                    <a href="{{ route('checkout', $d->cart_id) }}" class="btn btn-primary btn-sm">
                                         <i class="fa fa-eye"></i> Detail
                                     </a>
                                 </td>

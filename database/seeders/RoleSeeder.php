@@ -40,6 +40,7 @@ class RoleSeeder extends Seeder
         'cms.merchant.profile',
         'cms.merchant.product',
         'cms.merchant.order',
+        'cms.merchant.invoice',
     ];
     public $routeAdminExcept = [
         'cms.merchant.profile',

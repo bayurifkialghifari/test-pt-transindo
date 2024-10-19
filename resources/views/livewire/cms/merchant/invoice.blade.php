@@ -5,15 +5,15 @@
             <div class="card-body">
                 <div class="card-header">
                     <div class="card-body text-center">
-                        <div class="alert alert-{{ $old_data?->status->value == '1' ? 'success' : 'warning' }}" role="alert">
-                            Payment {{ $old_data?->status->label() }}.
+                        <div class="alert alert-{{ $data?->status->value == '1' ? 'success' : 'warning' }}" role="alert">
+                            Payment {{ $data?->status->label() }}.
                         </div>
                         <img src="{{
-                            $get?->merchant?->merchant?->getFirstMediaUrl('images') != ''
-                            ? $get?->merchant?->merchant?->getFirstMediaUrl('images')
+                            $data?->merchant?->merchant?->getFirstMediaUrl('images') != ''
+                            ? $data?->merchant?->merchant?->getFirstMediaUrl('images')
                             : asset('blank.svg')
-                        }}" alt="{{ $get->title }}" class="img-fluid rounded-circle mb-2" width="128" height="128">
-                        <h5 class="card-title mb-0">{{ $get->merchant?->merchant?->name ?? $get->merchant?->name }}</h5>
+                        }}" class="img-fluid rounded-circle mb-2" width="128" height="128">
+                        <h5 class="card-title mb-0">{{ $data->merchant?->merchant?->name ?? $data->merchant?->name }}</h5>
                     </div>
                     <hr class="my-0">
                     <div class="card-body">
@@ -21,14 +21,14 @@
                         @php
                             $total = 0;
                         @endphp
-                        @foreach ($get->details as $detail)
+                        @foreach ($data->cart->details as $detail)
                             <div class="row">
                                 <div class="col-2">
                                     <img src="{{
                                         $detail?->product?->getFirstMediaUrl('images') != ''
                                         ? $detail?->product?->getFirstMediaUrl('images')
                                         : asset('blank.svg')
-                                    }}" alt="{{ $get->title }}" class="img-fluid rounded-circle mb-2" width="64">
+                                    }}" class="img-fluid rounded-circle mb-2" width="64">
                                 </div>
                                 <div class="col-10">
                                     <h5 class="card-title mb-0">{{ $detail->product->title }}</h5>
@@ -46,37 +46,18 @@
                         @endforeach
                         <h4>Total : {{ number_format($total, 0, ',', '.')  }}</h4>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="text-muted">
-                                    How to pay :
-                                    <ol>
-                                        <li>Pay with Bank Transfer</li>
-                                        <li>Upload Receipt</li>
-                                        <li>Submit</li>
-                                        <li>Wait for confirmation</li>
-                                        <li>If confirmed, Food will be delivered</li>
-                                    </ol>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <h1 class="h3 mb-3 mt-3">
-                                    Upload Receipt
+                                    Receipt
                                 </h1>
-                                <x-acc-image-preview :$image
-                                    width="200px"
+                                <x-acc-image-preview :image="null"
+                                    width="50%"
                                     :form_image="
-                                        $old_data?->getFirstMediaUrl('images') != ''
-                                        ? $old_data?->getFirstMediaUrl('images')
+                                        $data?->getFirstMediaUrl('images') != ''
+                                        ? $data?->getFirstMediaUrl('images')
                                         : asset('blank.svg')
                                     "
                                 />
-                                @if($old_data?->status->value == '0')
-                                    <x-acc-input type="file" model="image" />
-                                    <button wire:click="customSave" class="btn btn-primary mt-2">
-                                        <i class="fa fa-dollar"></i>
-                                        Submit
-                                    </button>
-                                @endif
                             </div>
                         </div>
                     </div>
