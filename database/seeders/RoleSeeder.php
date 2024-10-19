@@ -40,7 +40,7 @@ class RoleSeeder extends Seeder
         'profile.update',
         'profile.destroy',
         'cms.merchant.profile',
-        'cms.merchant.menu',
+        'cms.merchant.product',
     ];
 
     public function run(): void

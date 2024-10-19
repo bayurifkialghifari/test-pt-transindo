@@ -7,15 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ProductType extends Model
+class Product extends Model implements HasMedia
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, InteractsWithMedia;
 
     protected $fillable = [
-        'name',
+        'user_id',
+        'product_type_id',
+        'title',
         'slug',
         'description',
+        'price',
         'active',
     ];
 
@@ -25,14 +30,17 @@ class ProductType extends Model
         ];
     }
 
-
     public function getSlugOptions() : SlugOptions {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
 
-    public function products() {
-        return $this->hasMany(Product::class);
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function productType() {
+        return $this->belongsTo(ProductType::class);
     }
 }
