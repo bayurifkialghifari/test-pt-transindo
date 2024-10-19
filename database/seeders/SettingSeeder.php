@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         Setting::create([
-            'name' => 'Dulbin Core',
+            'name' => 'Katering',
             'email' => 'email@email.com',
             'phone' => '081234567890',
             'address' => 'Jl. Jalan No. 1',
