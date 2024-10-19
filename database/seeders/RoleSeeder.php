@@ -31,15 +31,17 @@ class RoleSeeder extends Seeder
         'password.confirm',
         'password.update',
         'logout',
-        'cms.merchant.profile',
-        'cms.merchant.product',
-        'cms.merchant.order',
     ];
     public $routeMerchant = [
         'cms.dashboard',
         'profile.edit',
         'profile.update',
         'profile.destroy',
+        'cms.merchant.profile',
+        'cms.merchant.product',
+        'cms.merchant.order',
+    ];
+    public $routeAdminExcept = [
         'cms.merchant.profile',
         'cms.merchant.product',
         'cms.merchant.order',
@@ -63,7 +65,9 @@ class RoleSeeder extends Seeder
                     $permission = Permission::findOrCreate($permission, 'web');
 
                     // Give admin permission
-                    $admin->givePermissionTo($permission);
+                    if(!in_array($route, $this->routeAdminExcept)) {
+                        $admin->givePermissionTo($permission);
+                    }
 
                     // Give pegawai permission
                     if(in_array($route, $this->routeMerchant)) {
